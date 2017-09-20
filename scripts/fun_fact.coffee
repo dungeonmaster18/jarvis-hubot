@@ -9,7 +9,7 @@
 
 
 # List of insipirational quotes
-inspirationalquotes = ['McDonalds calls frequent buyers of their food “heavy users.',
+funfacts = ['McDonalds calls frequent buyers of their food “heavy users.',
 						'The average person spends 6 months of their lifetime waiting on a red light to turn green.',
 						'The largest recorded snowflake was in Keogh, MT during year 1887, and was 15 inches wide.',
 						'The expiration date on water bottles is for the bottle, not the water.',
@@ -28,13 +28,13 @@ bool = [0, 1]
 module.exports = (robot) ->
 
 	robot.hear /fun facts/i, (res) ->
-		res.reply "So that we can learn to pick ourselves up."
+		res.reply res.random funfacts
 
 	robot.respond /fun/i, (res) ->
-		res.send res.random inspirationalquotes
+		res.send res.random funfacts
 
 	robot.respond /facts/i, (res) ->
-		res.send res.random inspirationalquotes
+		res.send res.random funfacts
 
 	robot.hear /repeat (.*)/i, (res) ->
 		rand = res.random bool
