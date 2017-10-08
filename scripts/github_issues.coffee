@@ -16,7 +16,7 @@ module.exports = (robot) ->
       user = res.match[1].split("/")[0]
 
     query_params = state: "open", sort: "created"
-    query_params.per_page=100
+    query_params.per_page=50
 
     base_url = process.env.HUBOT_GITHUB_API || 'https://api.github.com'
     github.get "#{base_url}/repos/#{user}/#{repo}/issues", query_params, (issues) ->
