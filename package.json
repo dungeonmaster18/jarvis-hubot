@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "author": "dungeonmaster18 <umesh4257@gmail.com>",
-  "description": "A simple chatbot to inspire your team.",
+  "description": "A Bot which pulls all the issues from github repository.",
   "dependencies": {
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.2",
