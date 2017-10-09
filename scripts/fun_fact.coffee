@@ -49,4 +49,4 @@ module.exports = (robot) ->
 		robot.logger.error "Exterminate!"
 
 		if res?
-res.reply "That didn't work right"
+			res.reply "That didn't work right"

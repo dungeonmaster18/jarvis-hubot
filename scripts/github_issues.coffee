@@ -1,11 +1,25 @@
+# Description:
+#   Returns open issues from a Github repository
+#
+# Commands:
+#   jarvis(hubot) issues <user/repo> - Returns open issues for the specified repository.
+
 _  = require("underscore")
 
 module.exports = (robot) ->
   github = require("githubot")(robot)
 
+  # Log errors
+  robot.error (err, res) ->
+    robot.logger.error err
+    robot.logger.error "Exterminate!"
+
+    if res?
+      res.reply "Oops, Something went wrong"
+
   robot.respond /issues (.*)/i, (res) ->
     github.handleErrors (response) ->
-      res.reply "ERROR: #{response.error}"
+      res.reply "Oops, Something went wrong"
 
     repo = res.match[1].split("/")[1]
 
@@ -16,7 +30,7 @@ module.exports = (robot) ->
       user = res.match[1].split("/")[0]
 
     query_params = state: "open", sort: "created"
-    query_params.per_page=50
+    query_params.per_page=3
 
     base_url = process.env.HUBOT_GITHUB_API || 'https://api.github.com'
     github.get "#{base_url}/repos/#{user}/#{repo}/issues", query_params, (issues) ->
@@ -25,4 +39,4 @@ module.exports = (robot) ->
           labels = ("`##{label.name}`" for label in issue.labels).join(" ")
           res.reply "> [`#{issue.number}`] *#{issue.title} #{labels}* #{issue.html_url}"
       else
-res.reply "Congratulations! No open issues!"
+          res.reply "Congratulations! No open issues!"
