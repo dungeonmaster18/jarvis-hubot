@@ -38,5 +38,6 @@ module.exports = (robot) ->
         for issue in issues
           labels = ("`##{label.name}`" for label in issue.labels).join(" ")
           res.reply "> [`#{issue.number}`] *#{issue.title} #{labels}* #{issue.html_url}"
+        res.reply "See more <#{base_url}/repos/#{user}/#{repo}/issues/>"
       else
           res.reply "Congratulations! No open issues!"
